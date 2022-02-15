@@ -11,7 +11,7 @@
 
         public List<Project> GetAll()
         {
-            return null;
+            return _context.Projects.ToList();
         }
 
         public List<Project> GetByName(string prName)
