@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project_Management_System.Model.Entities
 {
-    public class Task
+    public class ProjectTask
     {
         [Key]
         public int Id { get; set; }

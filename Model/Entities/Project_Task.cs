@@ -8,7 +8,7 @@
 
         public int TaskId { get; set; }
 
-        public Task? Task { get; set; }
+        public ProjectTask? Task { get; set; }
 
         
     }

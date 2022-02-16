@@ -2,7 +2,7 @@
 {
     public enum TrackType
     {
-        Stoy = 1,
+        Story = 1,
             Bug = 2
     }
 }

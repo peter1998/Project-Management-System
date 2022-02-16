@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project_Management_System.Model.Entities;
-using Task = Project_Management_System.Model.Entities.Task;
+using ProjectTask = Project_Management_System.Model.Entities.ProjectTask;
 
 namespace Project_Management_System
 {
@@ -34,7 +34,7 @@ namespace Project_Management_System
         }
 
         public DbSet<Project> Projects { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<ProjectTask> Tasks { get; set; }
 
         public DbSet<Project_Task> Projects_Tasks { get; set; }
     }

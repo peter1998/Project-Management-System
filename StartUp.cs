@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project_Management_System.Data;
 using Project_Management_System.Model.Entities;
 
 namespace Project_Management_System
@@ -43,6 +44,8 @@ namespace Project_Management_System
             {
                 endpoints.MapControllers();
             });
+
+            DataInitializer.Seed(app);
         }
     }
 }

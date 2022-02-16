@@ -15,7 +15,7 @@ namespace Project_Management_System.Model.Entities
         public string Name { get; set; }
 
         [Required]
-        public List<Task> Backlog { get; set; }
+        public List<ProjectTask> Backlog { get; set; }
 
         public List<Project_Task> Projects_Tasks { get; set; }
     }
