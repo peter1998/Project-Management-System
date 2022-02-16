@@ -1,40 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Project_Management_System;
 using Project_Management_System.Model.Entities;
 
 namespace Project_Management_System.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
-
         private readonly AppDataContext _context;
-        public ProjectController(AppDataContext context)
+
+        private IProjectService _IProjectService;
+
+        public ProjectController(IProjectService prIProjectService)
         {
-            _context= context;
+            _IProjectService = prIProjectService;
         }
 
-        // GET: api/Projects
+        // GET: 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
+        public IEnumerable<Project> Get()
         {
-            return await _context.Projects.ToListAsync();
+            List<Project> IProjects = _IProjectService.GetAll();
+
+            return IProjects;
         }
 
-        // GET: api/Project/2
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> GetDCandidate(int id)
-        {
-            var Project = await _context.Projects.FindAsync(id);
-
-            if (Project == null)
-            {
-                return NotFound();
-            }
-
-            return Project;
-        }
-
+      
     }
 }

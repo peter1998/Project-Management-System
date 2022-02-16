@@ -14,23 +14,33 @@ namespace Project_Management_System.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private IConsoleWriter _IConsoleWriter;
+       
         private IProjectService _IProjectService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConsoleWriter prIConsoleWriter, IProjectService prIProjectService)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IProjectService prIProjectService)
         {
             _logger = logger;
-            _IConsoleWriter = prIConsoleWriter;
+            
             _IProjectService = prIProjectService;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            //Dependency Injection
-            // _IConsoleWriter.Write();
 
-            List<Project> projects;
+            //GET
+            // List<Project> IProjects = _IProjectService.GetAll();
+            //List<Project> IProjects = _IProjectService.GetByName("Quantum");
+            //Add
+            Project InewProject = new Project() { Name = "Orkaido" };
+            _IProjectService.Save(InewProject);
+            //Update
+            Project IProjectToUpdate = _IProjectService.GetByName("Orkaido").FirstOrDefault();
+            IProjectToUpdate.Name = "oRKAIDO Updated";
+            _IProjectService.Update(IProjectToUpdate);
+            //Delete
+            Project IProjectToDelete = _IProjectService.GetByName("oRKAIDO Updated").FirstOrDefault();
+            _IProjectService.Delete(IProjectToDelete);
 
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

@@ -16,22 +16,35 @@
 
         public List<Project> GetByName(string prName)
         {
-            return null;
+            var linq = from projects in _context.Projects select projects;
+
+            if (!string.IsNullOrEmpty(prName))
+            {
+                linq = linq.Where(x => x.Name.ToUpper().Contains(prName.ToUpper()));
+            }
+
+            return linq.ToList();
         }
 
         public Project Save(Project prProject)
         {
-            return null;
+            _context.Projects.Add(prProject);
+            _context.SaveChanges();
+            return prProject;
         }
 
         public Project Update(Project prProject)
         {
-            return null;
+            Project IProjectFromDb = _context.Projects.First(x => x.Id == prProject.Id);
+            _context.Entry(IProjectFromDb).CurrentValues.SetValues(prProject);
+            _context.SaveChanges();
+            return prProject;
         }
 
         public void Delete(Project prProject)
         {
-
+            _context.Entry(prProject).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.SaveChanges();
         }
     }
 }

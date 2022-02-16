@@ -12,10 +12,11 @@ namespace Project_Management_System.Model.Entities
         public int Id { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
-        public List<Task>? Backlog { get; set; }
+        [Required]
+        public List<Task> Backlog { get; set; }
 
-        public List<Project_Task>? Projects_Tasks { get; set; }
+        public List<Project_Task> Projects_Tasks { get; set; }
     }
 }
