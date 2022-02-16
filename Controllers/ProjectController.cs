@@ -10,7 +10,7 @@ using Project_Management_System.Model.Entities;
 
 namespace Project_Management_System.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -25,13 +25,40 @@ namespace Project_Management_System.Controllers
 
         // GET: 
         [HttpGet]
-        public IEnumerable<Project> Get()
+        public IActionResult GetAll()
         {
-            List<Project> IProjects = _IProjectService.GetAll();
+            List<Project> IResult = _IProjectService.GetAll();
 
-            return IProjects;
+            return Ok(IResult);
         }
 
-      
+        [HttpGet]
+        public IActionResult Search()
+        {
+            List<Project> IResult = _IProjectService.GetAll();
+
+            return Ok(IResult);
+        }
+
+        [HttpPut]
+        public IActionResult Update(Project prProject)
+        {
+
+            return Ok(_IProjectService.Update(prProject));
+        }
+
+        [HttpPost]
+        public IActionResult Save(Project prProject)
+        {
+            return Ok(_IProjectService.Save(prProject));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(Project prProject)
+        {
+
+            _IProjectService.Delete(prProject);
+            return Ok();
+        }
     }
 }
