@@ -7,26 +7,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_Management_System;
 
+#nullable disable
+
 namespace Project_Management_System.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20220215091416_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220216181223_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Project_Management_System.Model.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -52,12 +56,13 @@ namespace Project_Management_System.Migrations
                     b.ToTable("Projects_Tasks");
                 });
 
-            modelBuilder.Entity("Project_Management_System.Model.Entities.Task", b =>
+            modelBuilder.Entity("Project_Management_System.Model.Entities.ProjectTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Assignee")
                         .HasColumnType("nvarchar(max)");
@@ -101,7 +106,7 @@ namespace Project_Management_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Project_Management_System.Model.Entities.Task", "Task")
+                    b.HasOne("Project_Management_System.Model.Entities.ProjectTask", "Task")
                         .WithMany("Projects_Tasks")
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -112,7 +117,7 @@ namespace Project_Management_System.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("Project_Management_System.Model.Entities.Task", b =>
+            modelBuilder.Entity("Project_Management_System.Model.Entities.ProjectTask", b =>
                 {
                     b.HasOne("Project_Management_System.Model.Entities.Project", null)
                         .WithMany("Backlog")
@@ -126,7 +131,7 @@ namespace Project_Management_System.Migrations
                     b.Navigation("Projects_Tasks");
                 });
 
-            modelBuilder.Entity("Project_Management_System.Model.Entities.Task", b =>
+            modelBuilder.Entity("Project_Management_System.Model.Entities.ProjectTask", b =>
                 {
                     b.Navigation("Projects_Tasks");
                 });

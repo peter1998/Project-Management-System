@@ -45,7 +45,8 @@ namespace Project_Management_System
                 endpoints.MapControllers();
             });
 
-            DataInitializer.Seed(app);
+            //Method Already used once -> Use when want to delete the database and seed it again.
+            //DataInitializer.Seed(app);
         }
     }
 }
