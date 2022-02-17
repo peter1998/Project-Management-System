@@ -30,6 +30,10 @@ namespace Project_Management_System
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -37,9 +41,9 @@ namespace Project_Management_System
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project Management System");
             });
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseAuthorization();
-
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
