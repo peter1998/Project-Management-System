@@ -44,6 +44,7 @@ namespace Project_Management_System
             app.UseStaticFiles();
             app.UseAuthorization();
             app.UseHttpsRedirection();
+            app.UseCors(options => options.AllowAnyMethod().SetIsOriginAllowed(origin=>true));
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
