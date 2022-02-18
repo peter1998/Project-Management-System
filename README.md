@@ -1,9 +1,28 @@
 
 
 ### Project-Management-System Points  :
-- Build Web API in Asp.Net Core with CRUD web methods
-- React Form Design with Material UI
-- Implemented CRUD with Redux
-- Enabled CORS in Web API
-- Consume API web methods from React
-- Real-Time Form Validation
+### Building Project-Management-System With React and ASP.NET CORE
+
+## SETUP
+-Visual Studio
+-NODE JS
+-SQL SERVER Microsoft
+
+## BackEND
+-ASP.NET CORE
+-ENTITY FRAMEWORK CORE
+-SQL SERVER Microsoft
+
+## FRONT END
+-React
+-Bootstrap
+-AXIOS
+
+## DEPLOY
+-MICROSOFT IIS
+
+dependency used are NPM and nuget : for axios and EntityFramework
+Methods Used: Dependency Injection, Middleware, Configuring EF Core in the project Management System
+
+## API Controllers created and configuring with SWAGGER 
+
